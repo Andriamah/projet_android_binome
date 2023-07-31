@@ -1,0 +1,26 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "backendAndroid",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server.js",
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Elodie && Tony",
+  "license": "ISC",
+  "dependencies": {
+    "class-validator": "^0.14.0",
+    "express": "^4.18.2",
+    "mysql2": "^3.5.2",
+    "nodemon": "^3.0.1",
+    "reflect-metadata": "^0.1.13",
+    "routing-controllers": "^0.10.4",
+    "typeorm": "^0.3.17"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.17",
+    "typescript": "^5.1.6"
+  }
+}
