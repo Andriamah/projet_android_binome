@@ -1,18 +1,19 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-// app.js (or server.js)
-const express_1 = __importDefault(require("express"));
-const body_parser_1 = __importDefault(require("body-parser"));
-require("data-source"); // Import the database connection setup
-const client_controller_1 = __importDefault(require("./controller/client.controller"));
-const app = (0, express_1.default)();
-const PORT = 3000;
-app.use(body_parser_1.default.json());
-// Use the userController router for handling user-related routes
-app.use('/api', client_controller_1.default);
-app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
-});
+const app_1 = require("./app");
+function main() {
+    return __awaiter(this, void 0, void 0, function* () {
+        const app = new app_1.App();
+        yield app.listen();
+    });
+}
+main();
