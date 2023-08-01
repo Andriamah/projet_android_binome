@@ -74,6 +74,15 @@ else{
 // }
 // });
 // };
-
+Contenu.findByIdZone = function (zoneId, result) {
+  dbConn.query("SELECT * FROM contenu WHERE id_zone = ?", [zoneId], function (err, res) {
+    if (err) {
+      console.log("error: ", err);
+      result(null, err);
+    } else {
+      result(null, res);
+    }
+  });
+};
 
 module.exports = Contenu;

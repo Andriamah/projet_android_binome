@@ -14,3 +14,16 @@ Contenu.create(contenu_employee, function(err, contenu) {
 });
 }
 };
+
+exports.findByIdZone = function (req, res) {
+  const zoneId = req.params.zoneId;
+
+  Contenu.findByIdZone(zoneId, function (err, contenus) {
+    if (err) {
+      console.log("error: ", err);
+      res.status(500).json({ error: 'Erreur du serveur' });
+    } else {
+      res.status(200).json(contenus);
+    }
+  });
+};

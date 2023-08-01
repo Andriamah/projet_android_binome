@@ -144,3 +144,20 @@ exports.login = function (req, res) {
     });
   }
 };
+
+// Ajoutez une nouvelle fonction pour gérer la déconnexion
+exports.logout = function (req, res) {
+  // Votre logique de déconnexion ici, comme supprimer la session de l'utilisateur, effacer le token JWT, etc.
+  // Cela dépend de la méthode d'authentification utilisée dans votre application.
+
+  // Par exemple, si vous utilisez des sessions :
+  req.session.destroy(function(err) {
+    if (err) {
+      console.log("error: ", err);
+      res.status(500).json({ error: 'Erreur du serveur' });
+    } else {
+      res.status(200).json({ message: 'Déconnexion réussie' });
+    }
+  });
+};
+
