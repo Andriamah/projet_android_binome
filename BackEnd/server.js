@@ -16,12 +16,14 @@ app.get('/', (req, res) => {
 const clientRoute = require('./src/routes/client.route');
 const contenuRoute = require('./src/routes/contenu.route');
 const notificationRoute = require('./src/routes/notification.route')
+const favoriRoute = require('./src/routes/favori.route')
 
 
 // using as middleware
 app.use('/clients', clientRoute)
 app.use('/contenu',contenuRoute)
 app.use('/notification',notificationRoute)
+app.use('/favori',favoriRoute)
 
 // listen for requests
 app.listen(port, () => {

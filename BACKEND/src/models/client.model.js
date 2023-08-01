@@ -25,17 +25,7 @@ var Client = function (client) {
 // };
 
 
-// Client.findById = function (id, result) {
-// dbConn.query("Select * from employees where id = ? ", id, function (err, res) {
-// if(err) {
-//   console.log("error: ", err);
-//   result(err, null);
-// }
-// else{
-//   result(null, res);
-// }
-// });
-// };
+
 
 
 Client.findAll = function (result) {
