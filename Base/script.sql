@@ -37,6 +37,13 @@ CREATE TABLE `notification` (
 	PRIMARY KEY (`id`)
 );
 
+CREATE TABLE `favori` (
+	`id` INT NOT NULL AUTO_INCREMENT,
+	`id_client` INT NOT NULL,
+	`id_contenu` INT NOT NULL,
+	PRIMARY KEY (`id`)
+);
+
 ALTER TABLE `contenu` ADD CONSTRAINT `contenu_fk0` FOREIGN KEY (`id_client`) REFERENCES `client`(`id`);
 
 ALTER TABLE `contenu` ADD CONSTRAINT `contenu_fk1` FOREIGN KEY (`id_zone`) REFERENCES `zone`(`id`);
@@ -44,6 +51,11 @@ ALTER TABLE `contenu` ADD CONSTRAINT `contenu_fk1` FOREIGN KEY (`id_zone`) REFER
 ALTER TABLE `notification` ADD CONSTRAINT `notification_fk0` FOREIGN KEY (`id_client`) REFERENCES `client`(`id`);
 
 ALTER TABLE `notification` ADD CONSTRAINT `notification_fk1` FOREIGN KEY (`id_contenu`) REFERENCES `contenu`(`id`);
+
+ALTER TABLE `favori` ADD CONSTRAINT `favori_fk0` FOREIGN KEY (`id_client`) REFERENCES `client`(`id`);
+
+ALTER TABLE `favori` ADD CONSTRAINT `favori_fk1` FOREIGN KEY (`id_contenu`) REFERENCES `contenu`(`id`);
+
 
 
 
