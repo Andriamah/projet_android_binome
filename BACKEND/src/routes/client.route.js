@@ -14,4 +14,9 @@ router.get('/', clientController.findAll);
 router.put('/:id', clientController.update);
 // Delete a employee with id
 // router.delete('/:id', employeeController.delete);
+
+router.post('/register', clientController.register);
+
+router.post('/login', clientController.login);
+
 module.exports = router

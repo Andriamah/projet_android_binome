@@ -56,8 +56,7 @@ ALTER TABLE `favori` ADD CONSTRAINT `favori_fk0` FOREIGN KEY (`id_client`) REFER
 
 ALTER TABLE `favori` ADD CONSTRAINT `favori_fk1` FOREIGN KEY (`id_contenu`) REFERENCES `contenu`(`id`);
 
-
-
+ALTER TABLE `client` CHANGE `mdp` `mdp` VARCHAR(200) ;
 
 
 

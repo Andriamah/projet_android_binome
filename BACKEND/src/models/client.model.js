@@ -24,10 +24,6 @@ var Client = function (client) {
 // });
 // };
 
-
-
-
-
 Client.findAll = function (result) {
     dbConn.query("Select * from client", function (err, res) {
         if (err) {
@@ -53,6 +49,18 @@ if(err) {
 });
 };
 
+Client.create = function (newClient, result) {
+    dbConn.query("INSERT INTO client SET ?", newClient, function (err, res) {
+      if (err) {
+        console.log("error: ", err);
+        result(err, null);
+      } else {
+        result(null, res.insertId);
+      }
+    });
+  };
+
+
 // Client.delete = function(id, result){
 // dbConn.query("DELETE FROM employees WHERE id = ?", [id], function (err, res) {
 // if(err) {
@@ -64,6 +72,17 @@ if(err) {
 // }
 // });
 // };
+
+Client.findByPseudo = function (pseudo, result) {
+    dbConn.query("SELECT * FROM client WHERE pseudo = ?", [pseudo], function (err, res) {
+      if (err) {
+        console.log("error: ", err);
+        result(err, null);
+      } else {
+        result(null, res.length ? res[0] : null);
+      }
+    });
+  };
 
 
 module.exports = Client;
