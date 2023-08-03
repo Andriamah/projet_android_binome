@@ -2,10 +2,10 @@
 const mysql = require('mysql');
 //local mysql db connection
 const dbConn = mysql.createConnection({
-  host     : 'localhost',
-  user     : 'root',
-  password : '',
-  database : 'tourisme'
+  host     : 'mysql-mysqlbase.alwaysdata.net',
+  user     : 'mysqlbase',
+  password : 'wenna1234',
+  database : 'mysqlbase_tourisme'
 });
 dbConn.connect(function(err) {
   if (err) throw err;

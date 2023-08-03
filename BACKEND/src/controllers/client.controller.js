@@ -62,6 +62,7 @@ exports.register = function (req, res) {
 
     // Vérifier si toutes les informations requises sont fournies
     if (!nom || !prenom || !pseudo || !mail || !mdp) {
+      console.log('Controller client post')
       return res.status(400).json({ error: 'Toutes les informations sont requises' });
     }
 
