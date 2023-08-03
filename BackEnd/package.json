@@ -7,6 +7,10 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon server"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Andriamah/projet_android_binome.git"
+  },
   "author": "Elodie & Tony",
   "license": "ISC",
   "keywords": [],
@@ -19,5 +23,9 @@
   },
   "devDependencies": {
     "nodemon": "^3.0.1"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/Andriamah/projet_android_binome/issues"
+  },
+  "homepage": "https://github.com/Andriamah/projet_android_binome#readme"
 }
