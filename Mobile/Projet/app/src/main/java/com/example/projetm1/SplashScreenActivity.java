@@ -6,7 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
-import com.example.projetm1.view.ui.login.LoginActivity;
+import com.example.projetm1.view.AuthActivity;
+
 
 // java/com/yourpackage/SplashScreenActivity.java
 public class SplashScreenActivity extends AppCompatActivity {
@@ -26,7 +27,7 @@ public class SplashScreenActivity extends AppCompatActivity {
                 if (isClientConnected()) {
                     // Client connecté, démarrer HomeActivity
 //                    startActivity(new Intent(SplashScreenActivity.this, HomeActivity.class));
-                    startActivity(new Intent(SplashScreenActivity.this, LoginActivity.class));
+                    startActivity(new Intent(SplashScreenActivity.this, AuthActivity.class));
                 } else {
                     // Client non connecté, démarrer LoginActivity
 

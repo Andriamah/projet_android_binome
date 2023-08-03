@@ -22,11 +22,11 @@ const zoneRoute = require('./src/routes/zone.route');
 
 
 // using as middleware
-app.use('/clients', clientRoute)
+app.use('/client', clientRoute)
 app.use('/contenu',contenuRoute)
 app.use('/notification',notificationRoute)
 app.use('/favori',favoriRoute)
-app.use('/zones', zoneRoute);
+app.use('/zone', zoneRoute);
 
 // listen for requests
 app.listen(port, () => {
