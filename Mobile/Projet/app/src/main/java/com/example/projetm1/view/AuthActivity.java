@@ -2,6 +2,7 @@ package com.example.projetm1.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -9,6 +10,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.projetm1.R;
+import com.example.projetm1.SplashScreenActivity;
 import com.example.projetm1.controller.ClientController;
 
 public class AuthActivity extends AppCompatActivity {
@@ -21,10 +23,11 @@ public class AuthActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().hide();
+        }
         setContentView(R.layout.activity_auth);
-
         clientController = new ClientController();
-
         usernameEditText = findViewById(R.id.usernameEditText);
         passwordEditText = findViewById(R.id.passwordEditText);
         loginButton = findViewById(R.id.loginButton);
@@ -44,6 +47,7 @@ public class AuthActivity extends AppCompatActivity {
                             @Override
                             public void run() {
                                 Toast.makeText(AuthActivity.this, "Connexion réussie", Toast.LENGTH_SHORT).show();
+                                startActivity(new Intent(AuthActivity.this, Accueil.class));
                             }
                         });
                     }

@@ -18,6 +18,9 @@ public class SplashScreenActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().hide();
+        }
 
         // Démarrer l'activité suivante après un délai
         new Handler().postDelayed(new Runnable() {
@@ -30,7 +33,6 @@ public class SplashScreenActivity extends AppCompatActivity {
                     startActivity(new Intent(SplashScreenActivity.this, AuthActivity.class));
                 } else {
                     // Client non connecté, démarrer LoginActivity
-
                 }
                 // Terminer l'activité SplashScreen pour qu'elle ne revienne pas lorsque l'utilisateur appuie sur le bouton Retour
                 finish();

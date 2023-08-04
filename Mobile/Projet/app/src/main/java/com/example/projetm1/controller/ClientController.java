@@ -27,8 +27,8 @@ public class ClientController {
 
         // Construire le corps de la requête POST avec les informations d'identification
         RequestBody formBody = new FormBody.Builder()
-                .add("username", username)
-                .add("password", password)
+                .add("pseudo", username)
+                .add("mdp", password)
                 .build();
 
         // Construire la requête POST
@@ -53,11 +53,11 @@ public class ClientController {
                 Log.d("MyTag", jsonResponse);
                 try {
                     JSONObject jsonObject = new JSONObject(jsonResponse);
-                    boolean success = jsonObject.getBoolean("success");
-                    String message = jsonObject.getString("error");
+                    String success = jsonObject.getString("message");
+                    String message = jsonObject.getString("message");
 
                     // Traiter la réponse JSON en fonction du succès ou de l'échec de l'authentification
-                    if (success) {
+                    if (success.equals("Connexion réussie")) {
                         // L'authentification a réussi
                         callback.onLoginSuccess();
                     } else {
