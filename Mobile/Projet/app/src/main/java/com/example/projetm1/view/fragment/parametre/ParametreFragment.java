@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -49,6 +48,15 @@ public class ParametreFragment extends Fragment {
                 navController.navigate(R.id.nav_profil);
             }
         });
+        CardView card2= view.findViewById(R.id.card2);
+        card2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Utilisation de NavController pour naviguer vers un autre fragment
+                navController.navigate(R.id.nav_notif);
+            }
+        });
+
         // Le reste de votre code onViewCreated
     }
     @Override
