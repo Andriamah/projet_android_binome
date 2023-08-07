@@ -18,10 +18,7 @@ import com.example.projetm1.databinding.FragmentGalleryBinding;
 import com.example.projetm1.model.Historique_favori;
 
 import java.util.ArrayList;
-
-
 public class FavorisFragment extends Fragment {
-
     private FragmentGalleryBinding binding;
     private FavoriController favoriController;
 
