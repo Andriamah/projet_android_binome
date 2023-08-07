@@ -24,3 +24,23 @@ on co.id = f.id_contenu
 join client c 
 on c.id = co.id_client;
 
+create view contenu_client_zone as
+select c.*,
+cl.pseudo as pseudo,
+z.intitule as intitule_zone
+ from contenu c 
+join client cl 
+on cl.id = c.id_client
+join zone z 
+on z.id = c.id_zone;
+
+L’objectif principal de ce proje est de créer un application 
+mobile concentrée sur la mise  en valeur du tourisme de Madagascar.
+Explicitement , le projet consiste à ajouter des contenus vidéo, image ainsi que des description 
+Ainsi , les résultats attendues  de ce projet seront : 
+- Login , inscription et deconnexion
+- Ajout contenus avec image et video
+-Acceder à la liste des contenus par zone
+-Pouvoir réagir au contenu publier
+-Recevoir des notifications
+

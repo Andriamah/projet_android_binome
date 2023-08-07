@@ -8,7 +8,8 @@ router.get('/', clientController.findAll);
 // Create a new employee
 // router.post('/', employeeController.create);
 // Retrieve a single employee with id
-// router.get('/:id', employeeController.findById);
+
+router.get('/:id', clientController.findById);
 
 // Update a employee with id
 router.put('/:id', clientController.update);

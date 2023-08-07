@@ -20,6 +20,7 @@ exports.findById = function (req, res) {
   Historique_favori.findById(req.params.id, function (err, notif) {
     if (err)
       res.send(err);
+    console.log('ATO ANATY REQUETE MITSY TSIKA***************')
     res.json(notif);
   });
 };

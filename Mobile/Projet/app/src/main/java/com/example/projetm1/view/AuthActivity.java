@@ -1,12 +1,12 @@
 package com.example.projetm1.view;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.projetm1.R;
 import com.example.projetm1.controller.ClientController;
@@ -32,6 +32,7 @@ public class AuthActivity extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Toast.makeText(AuthActivity.this, "Connexion réussie", Toast.LENGTH_SHORT).show();
                 String username = usernameEditText.getText().toString();
                 String password = passwordEditText.getText().toString();
 
