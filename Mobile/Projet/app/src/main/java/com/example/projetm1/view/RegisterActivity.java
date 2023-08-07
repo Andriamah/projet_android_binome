@@ -2,7 +2,6 @@ package com.example.projetm1.view;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -10,9 +9,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.projetm1.R;
 import com.example.projetm1.controller.ClientController;
 import com.example.projetm1.model.Client;
+import com.example.projetm1.outils.NotificationHelper;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -37,16 +38,16 @@ public class RegisterActivity extends AppCompatActivity {
             getSupportActionBar().hide();
         }
         clientController = new ClientController();
-        nom = findViewById(R.id.nom);
-        prenom = findViewById(R.id.prenom);
-        pseudo = findViewById(R.id.pseudo);
-        mail = findViewById(R.id.mail);
-        mdp = findViewById(R.id.mdp);
+        nom = findViewById(R.id.textEdithNom);
+        prenom = findViewById(R.id.textEdithPrenom);
+        pseudo = findViewById(R.id.textEdithPseudo);
+        mail = findViewById(R.id.textEdithMail);
+        mdp = findViewById(R.id.edithTextMdp);
 //        pdp = findViewById(R.id.pdp);
 
         // Initialisez les autres EditText
 
-        btnRegister = findViewById(R.id.btnRegister);
+        btnRegister = findViewById(R.id.BtnValider);
 
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,6 +70,11 @@ public class RegisterActivity extends AppCompatActivity {
                                 runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {
+                                        String title = "BIENVENU SUR DAGOTOUR";
+                                        String message = "Decouvrez les merveilles de Madagascar";
+
+                                        // Appeler la méthode de la classe NotificationHelper pour afficher la notification
+                                        NotificationHelper.displayNotification(RegisterActivity.this, title, message);
                                         Toast.makeText(RegisterActivity.this, "Inscription réussie", Toast.LENGTH_SHORT).show();
 //                                        startActivity(new Intent(AuthActivity.this, Accueil.class));
                                     }
