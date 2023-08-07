@@ -13,12 +13,14 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fabButton"
-        android:layout_width="109dp"
+        android:id="@+id/fab1"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:layout_marginLeft="100dp"
-        android:src="@drawable/profil"
-        app:layout_anchor="@id/fragmentcontenu"
-        app:layout_anchorGravity="bottom|start" />
+        android:layout_gravity="bottom|end"
+
+        android:layout_marginRight="@dimen/fab_margin"
+        android:layout_marginBottom="16dp"
+        app:backgroundTint="#C3A16308"
+        app:srcCompat="@drawable/plus" />
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
