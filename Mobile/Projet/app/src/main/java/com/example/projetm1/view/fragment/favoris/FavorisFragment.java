@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.projetm1.R;
+import com.example.projetm1.adapter.FavoriAdapter;
 import com.example.projetm1.controller.FavoriController;
 import com.example.projetm1.databinding.FragmentGalleryBinding;
 import com.example.projetm1.model.Historique_favori;
@@ -64,7 +65,6 @@ public class FavorisFragment extends Fragment {
             });
         }
     }
-
 
     @Override
     public void onDestroyView() {
