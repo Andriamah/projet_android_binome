@@ -21,8 +21,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.projetm1.R;
 import com.example.projetm1.config.CardAdapter;
+import com.example.projetm1.controller.FavoriController;
+import com.example.projetm1.controller.ZoneController;
 import com.example.projetm1.databinding.FragmentHomeBinding;
 import com.example.projetm1.model.CardModel;
+import com.example.projetm1.model.Historique_favori;
+import com.example.projetm1.model.Zone;
 import com.example.projetm1.view.fragment.contenu.ContenuFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -36,6 +40,8 @@ public class HomeFragment extends Fragment {
     private CardAdapter cardAdapter;
     private NavController navController;
 
+    private ZoneController zoneController;
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         HomeViewModel homeViewModel =
@@ -44,13 +50,29 @@ public class HomeFragment extends Fragment {
         recyclerView = rootView.findViewById(R.id.recyclerView);
         floatingActionButton = rootView.findViewById(R.id.fab);
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
-
+        zoneController = new ZoneController();
         ArrayList<CardModel> cardList = new ArrayList<>();
+     zoneController.getListFavoriClient(new ZoneController.GetZoneCallBack(){
+
+         @Override
+         public void onGetZoneClientSuccess(ArrayList<Zone> favoris) {
+             Log.d("ieeeeeeeee","nonnnnnnnnnnnnnnnnnnnnnnnnnnnn");
+             for (Zone z: favoris) {
+                 cardList.add(new CardModel(R.drawable.baobabs, z.getIntitule(), z.getDescription()));
+             }
+         }
+         @Override
+         public void onGetZoneClientFailure(String messageError) {
+                Log.d("aaa","nonnnnnnnnnnnnnnnnnnnnnnnnnnnn");
+         }
+     });
+
+
         // Remplissez votre liste de cartes avec les données nécessaires
-        cardList.add(new CardModel(R.drawable.baobabs, "Titre 1", ""));
-        cardList.add(new CardModel(R.drawable.baobabs, "Titre 2", ""));
-        cardList.add(new CardModel(R.drawable.baobabs, "Titre 3", ""));
-        cardList.add(new CardModel(R.drawable.baobabs, "Titre 4", ""));
+//        cardList.add(new CardModel(R.drawable.baobabs, "Titre 1", ""));
+//        cardList.add(new CardModel(R.drawable.baobabs, "Titre 2", ""));
+//        cardList.add(new CardModel(R.drawable.baobabs, "Titre 3", ""));
+//        cardList.add(new CardModel(R.drawable.baobabs, "Titre 4", ""));
         // Ajoutez plus d'éléments à la liste
 
         cardAdapter = new CardAdapter(cardList);

@@ -38,9 +38,7 @@ public class ParametreFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
         navController = Navigation.findNavController(view);
-
         CardView card1 = view.findViewById(R.id.card1);
         card1.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -4,13 +4,13 @@ public class Zone {
     private int id;
     private String intitule;
     private String description;
-    private int imageResourceId;
 
-    public Zone(int id, String intitule, String description, int imageResourceId) {
+
+    public Zone(int id, String intitule, String description) {
         this.id = id;
         this.intitule = intitule;
         this.description = description;
-        this.imageResourceId = imageResourceId;
+
     }
 
     public int getId() {
@@ -25,8 +25,6 @@ public class Zone {
         return description;
     }
 
-    public int getImageResourceId() {
-        return imageResourceId;
-    }
+
 }
 
