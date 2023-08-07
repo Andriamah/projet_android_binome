@@ -2,12 +2,18 @@ package com.example.projetm1.controller;
 
 import android.util.Log;
 
+import androidx.annotation.NonNull;
+
 import com.example.projetm1.config.ApiConfig;
+import com.example.projetm1.model.Historique_notif;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -74,5 +80,48 @@ public class NotificationController {
     public interface AddNotificationCallBack{
         void onAddNotificationSuccess();
         void  onAddNotificationFailure(String errorMessage);
+    }
+
+    public void getListNotifClient(int id_client, final GetNotifClientCallBack callBack) {
+        String notifUrl = ApiConfig.BASE_URL + "/notification/" + id_client;
+
+        // Créer une instance d'OkHttpClient pour effectuer la requête
+        OkHttpClient client = new OkHttpClient();
+
+        // Construire la requête GET pour récupérer les détails du client
+        Request request = new Request.Builder()
+                .url(notifUrl)
+                .get()
+                .build();
+
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+                // Vérifier si la réponse est réussie (code de statut 200) avant de traiter la réponse
+                if (response.isSuccessful()) {
+                    // Récupérer la réponse JSON du serveur
+                    String jsonResponse = response.body().string();
+
+                    // Analyser la réponse JSON en une liste d'objets Favori à l'aide de Gson
+                    ArrayList<Historique_notif> notifs = new Gson().fromJson(jsonResponse, new TypeToken<ArrayList<Historique_notif>>() {}.getType());
+
+                    // Appeler le callback avec la liste de favoris
+                    callBack.onGetNotifClientSuccess(notifs);
+                } else {
+                    // Appeler le callback avec un message d'erreur en cas de réponse non réussie
+                    callBack.onGetNotifClientFailure("Erreur lors de la récupération des favoris du client");
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                // Appeler le callback avec un message d'erreur en cas d'échec de la requête
+                callBack.onGetNotifClientFailure("Erreur lors de la récupération des favoris du client");
+            }
+        });
+    }
+    public interface  GetNotifClientCallBack{
+        void onGetNotifClientSuccess(ArrayList<Historique_notif> notifs);
+        void onGetNotifClientFailure(String messageError);
     }
 }

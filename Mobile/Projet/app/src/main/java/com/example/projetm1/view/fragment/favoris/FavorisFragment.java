@@ -1,52 +1,39 @@
 package com.example.projetm1.view.fragment.favoris;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 
-import com.example.projetm1.R;
 import com.example.projetm1.adapter.FavoriAdapter;
 import com.example.projetm1.controller.FavoriController;
 import com.example.projetm1.databinding.FragmentGalleryBinding;
 import com.example.projetm1.model.Historique_favori;
 
 import java.util.ArrayList;
-public class FavorisFragment extends Fragment {
+
+
+public class FavorisFragment extends Fragment implements FavoriController.GetFavoriClientCallBack {
+
     private FragmentGalleryBinding binding;
     private FavoriController favoriController;
 
-
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        FavorisViewModel favorisViewModel =
-                new ViewModelProvider(this).get(FavorisViewModel.class);
-
         binding = FragmentGalleryBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        View rootView = inflater.inflate(R.layout.fragment_gallery, container, false);
         favoriController = new FavoriController();
 
         // Appeler la méthode pour récupérer la liste de Favori
         int idClient = 1; // Remplacez 1 par l'ID du client que vous souhaitez récupérer les favoris
-        favoriController.getListFavoriClient(idClient, new FavoriController.GetFavoriClientCallBack() {
-            @Override
-            public void onGetFavoriClientSuccess(ArrayList<Historique_favori> favoris) {
-                creerListe(favoris);
-            }
+        favoriController.getListFavoriClient(idClient, this);
 
-            @Override
-            public void onGetFavoriClientFailure(String messageError) {
-
-            }
-        });
         return root;
     }
 
@@ -55,7 +42,7 @@ public class FavorisFragment extends Fragment {
             getActivity().runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    ListView listDesFavori = getView().findViewById(R.id.listeViewFavori);
+                    ListView listDesFavori = binding.listeViewFavori; // Utiliser binding pour accéder à la ListView
                     FavoriAdapter adapter = new FavoriAdapter(getActivity(), lesFavori);
                     listDesFavori.setAdapter(adapter);
                 }
@@ -67,5 +54,24 @@ public class FavorisFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+    }
+
+    @Override
+    public void onGetFavoriClientSuccess(ArrayList<Historique_favori> favoris) {
+        if (favoris != null) {
+            Log.d("FavorisFragment", "Nombre de favoris récupérés : " + favoris.size());
+            for (Historique_favori favori : favoris) {
+                Log.d("FavorisFragment", "Favori : " + favori.toString());
+            }
+            creerListe(favoris);
+        } else {
+            Log.d("FavorisFragment", "Liste de favoris est vide.");
+        }
+    }
+
+
+    @Override
+    public void onGetFavoriClientFailure(String messageError) {
+
     }
 }

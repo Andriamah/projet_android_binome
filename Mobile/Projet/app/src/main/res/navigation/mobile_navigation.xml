@@ -35,6 +35,11 @@
         android:label="Profil"
         tools:layout="@layout/fragment_profil" />
     <fragment
+        android:id="@+id/nav_notif"
+        android:name="com.example.projetm1.view.fragment.notif.Fragment_notif"
+        android:label="Notification"
+        tools:layout="@layout/fragment_notif" />
+    <fragment
         android:id="@+id/ajout_contenu"
         android:name="com.example.projetm1.view.fragment.addcontenu.AddContenuFragment"
         android:label="Nouvelle Contenu"

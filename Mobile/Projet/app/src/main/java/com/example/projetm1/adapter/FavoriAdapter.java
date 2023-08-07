@@ -9,6 +9,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.projetm1.R;
 import com.example.projetm1.model.Historique_favori;
 
 import java.util.ArrayList;
@@ -40,7 +41,20 @@ public class FavoriAdapter extends BaseAdapter {
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
         ViewHolder holder;
-
+        if(view==null){
+            holder = new ViewHolder();
+            //ligne construite
+            view = inflater.inflate(R.layout.layout_list_favori,null);
+            //ch pr du holder relie çà prop
+            holder.IMGView =(ImageView) view.findViewById(R.id.IMGviewNotif);
+            holder.textDate = view.findViewById(R.id.textDate);
+            holder.textPub = view.findViewById(R.id.textPublieur);
+            view.setTag(holder);
+        }else{
+            holder = (ViewHolder) view.getTag();
+        }
+        holder.textDate.setText(favoriArrayList.get(i).getDate_contenu());
+        holder.textPub.setText(favoriArrayList.get(i).getPseudo());
         return view;
     }
 
