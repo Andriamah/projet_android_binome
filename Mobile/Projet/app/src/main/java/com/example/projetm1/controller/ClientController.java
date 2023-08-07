@@ -4,6 +4,8 @@ import android.util.Log;
 
 import com.example.projetm1.config.ApiConfig;
 import com.example.projetm1.model.Client;
+import com.example.projetm1.outils.OkHttpUtils;
+import com.example.projetm1.outils.SSLUtils;
 import com.google.gson.Gson;
 
 import org.json.JSONException;
@@ -24,7 +26,7 @@ public class ClientController {
     public void login(String username, String password, final LoginCallback callback) {
 
         String loginUrl = ApiConfig.BASE_URL + "/client/login";
-        OkHttpClient client = new OkHttpClient();
+        OkHttpClient client = OkHttpUtils.getUnsafeOkHttpClient();
 
         // Construire le corps de la requête POST avec les informations d'identification
         RequestBody formBody = new FormBody.Builder()
@@ -94,7 +96,7 @@ public class ClientController {
     public void register(Client clientbody, final RegisterCallback callback) {
     Log.d("tatay",clientbody.getNom());
     String registerUrl = ApiConfig.BASE_URL + "/client/register";
-    OkHttpClient client = new OkHttpClient();
+    OkHttpClient client = OkHttpUtils.getUnsafeOkHttpClient();
 
     // Construire le corps de la requête POST avec les informations d'identification
     RequestBody formBody = new FormBody.Builder()
@@ -212,6 +214,13 @@ public class ClientController {
 //    Fiche Client
     public void getClientById(int clientId, final GetClientByIdCallback callback) {
         // Construire l'URL de l'API pour récupérer les détails du client avec l'ID donné
+        SSLUtils.disableSSLVerification();
+
+        // Le reste de votre code pour effectuer la requête et gérer la réponse
+        // ...
+
+        // Après avoir effectué l'appel réseau, réactivez la vérification SSL
+        //
         String apiUrl = ApiConfig.BASE_URL + "/client/" + clientId;
 
         // Créer une instance d'OkHttpClient pour effectuer la requête

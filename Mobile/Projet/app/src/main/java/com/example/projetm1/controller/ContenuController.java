@@ -6,7 +6,7 @@ import androidx.annotation.NonNull;
 
 import com.example.projetm1.config.ApiConfig;
 import com.example.projetm1.model.Contenu;
-import com.example.projetm1.model.Historique_favori;
+import com.example.projetm1.outils.OkHttpUtils;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -31,7 +31,7 @@ public class ContenuController {
                            String video, String date_contenu, final AddContenuCallback callback) {
 
         String addContenuUrl = ApiConfig.BASE_URL + "/contenu/";
-        OkHttpClient client = new OkHttpClient();
+        OkHttpClient client = OkHttpUtils.getUnsafeOkHttpClient();
 
         // Construire le corps de la requête POST avec les détails du contenu à ajouter
         RequestBody formBody = new FormBody.Builder()
@@ -96,7 +96,7 @@ public class ContenuController {
         Log.d("url",favoriUrl);
 
         // Créer une instance d'OkHttpClient pour effectuer la requête
-        OkHttpClient client = new OkHttpClient();
+        OkHttpClient client = OkHttpUtils.getUnsafeOkHttpClient();
 
         // Construire la requête GET pour récupérer les détails du client
         Request request = new Request.Builder()
