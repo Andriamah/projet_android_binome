@@ -119,7 +119,11 @@ public class FavoriController {
             }
         });
     }
-    public interface  GetFavoriClientCallBack{
+
+   
+
+    public interface GetFavoriClientCallBack{
+
         void onGetFavoriClientSuccess(ArrayList<Historique_favori> favoris);
         void onGetFavoriClientFailure(String messageError);
     }

@@ -1,7 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.recyclerview.widget.RecyclerView
+<androidx.coordinatorlayout.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/fragmentcontenu"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="8dp"/>
+    android:layout_height="match_parent">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/fragmentcontenu"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="8dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabButton"
+        android:layout_width="109dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:layout_marginLeft="100dp"
+        android:src="@drawable/profil"
+        app:layout_anchor="@id/fragmentcontenu"
+        app:layout_anchorGravity="bottom|start" />
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
