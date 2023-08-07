@@ -1,6 +1,10 @@
 package com.example.projetm1.view;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
 
@@ -23,6 +27,26 @@ public class Accueil extends AppCompatActivity {
     private ActivityAccueilBinding binding;
 
     @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.action_logout) {
+            SharedPreferences preferences = getSharedPreferences("session", Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.clear(); // Efface toutes les données stockées dans les SharedPreferences
+            editor.apply(); // Ou utilisez editor.commit() si vous préférez bloquer le thread
+            startActivity(new Intent(Accueil.this, AuthActivity.class));
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+
+
+
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
@@ -30,13 +54,6 @@ public class Accueil extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         setSupportActionBar(binding.appBarAccueil.toolbar);
-        binding.appBarAccueil.fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
         // Passing each menu ID as a set of Ids because each
@@ -56,6 +73,9 @@ public class Accueil extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.accueil, menu);
         return true;
     }
+
+
+
 
     @Override
     public boolean onSupportNavigateUp() {

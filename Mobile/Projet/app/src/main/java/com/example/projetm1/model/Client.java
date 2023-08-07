@@ -13,8 +13,7 @@ public class Client {
     public Client() {
     }
 
-    public Client(String id, String nom, String prenom, String pseudo, String mail, String mdp, String pdp) {
-        this.id = id;
+    public Client(String nom, String prenom, String pseudo, String mail, String mdp, String pdp) {
         this.nom = nom;
         this.prenom = prenom;
         this.pseudo = pseudo;

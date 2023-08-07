@@ -2,10 +2,13 @@ package com.example.projetm1;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 
+import com.example.projetm1.view.Accueil;
 import com.example.projetm1.view.AuthActivity;
 
 
@@ -21,18 +24,20 @@ public class SplashScreenActivity extends AppCompatActivity {
         if (getSupportActionBar() != null) {
             getSupportActionBar().hide();
         }
-
         // Démarrer l'activité suivante après un délai
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
                 // Vérifier si le client est connecté (remplacez cette logique avec votre propre vérification)
-                if (isClientConnected()) {
+                SharedPreferences preferences = getSharedPreferences("session", Context.MODE_PRIVATE);
+                String savedJson = preferences.getString("user_data", "");
+                if (!savedJson.equals("")) {
                     // Client connecté, démarrer HomeActivity
 //                    startActivity(new Intent(SplashScreenActivity.this, HomeActivity.class));
-                    startActivity(new Intent(SplashScreenActivity.this, AuthActivity.class));
+                    startActivity(new Intent(SplashScreenActivity.this, Accueil.class));
                 } else {
                     // Client non connecté, démarrer LoginActivity
+                    startActivity(new Intent(SplashScreenActivity.this, AuthActivity.class));
                 }
                 // Terminer l'activité SplashScreen pour qu'elle ne revienne pas lorsque l'utilisateur appuie sur le bouton Retour
                 finish();

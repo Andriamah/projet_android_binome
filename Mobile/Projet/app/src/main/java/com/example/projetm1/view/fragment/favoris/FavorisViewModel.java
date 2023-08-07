@@ -1,16 +1,16 @@
-package com.example.projetm1.view.ui.home;
+package com.example.projetm1.view.fragment.favoris;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class HomeViewModel extends ViewModel {
+public class FavorisViewModel extends ViewModel {
 
     private final MutableLiveData<String> mText;
 
-    public HomeViewModel() {
+    public FavorisViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is home fragment");
+        mText.setValue("This is gallery fragment");
     }
 
     public LiveData<String> getText() {

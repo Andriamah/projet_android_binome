@@ -1,16 +1,16 @@
-package com.example.projetm1.view.ui.slideshow;
+package com.example.projetm1.view.fragment.parametre;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class SlideshowViewModel extends ViewModel {
+public class ParametreViewModel extends ViewModel {
 
     private final MutableLiveData<String> mText;
 
-    public SlideshowViewModel() {
+    public ParametreViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is slideshow fragment");
+        mText.setValue("This is parametre fragment");
     }
 
     public LiveData<String> getText() {

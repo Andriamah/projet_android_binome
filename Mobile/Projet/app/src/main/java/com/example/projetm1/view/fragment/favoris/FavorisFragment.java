@@ -1,4 +1,4 @@
-package com.example.projetm1.view.ui.gallery;
+package com.example.projetm1.view.fragment.favoris;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,20 +13,20 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.projetm1.databinding.FragmentGalleryBinding;
 
 
-public class GalleryFragment extends Fragment {
+public class FavorisFragment extends Fragment {
 
     private FragmentGalleryBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        GalleryViewModel galleryViewModel =
-                new ViewModelProvider(this).get(GalleryViewModel.class);
+        FavorisViewModel favorisViewModel =
+                new ViewModelProvider(this).get(FavorisViewModel.class);
 
         binding = FragmentGalleryBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
         final TextView textView = binding.textGallery;
-        galleryViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+        favorisViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         return root;
     }
 
