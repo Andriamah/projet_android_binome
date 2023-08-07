@@ -9,17 +9,19 @@ import androidx.fragment.app.Fragment;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.projetm1.R;
 import com.example.projetm1.config.CardAdapter;
+import com.example.projetm1.config.ContenuAdapter;
 import com.example.projetm1.model.CardModel;
 
 import java.util.ArrayList;
 
 public class ContenuFragment extends Fragment {
     private RecyclerView recyclerView;
-    private CardAdapter cardAdapter;
+    private ContenuAdapter contenuAdapter;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -27,8 +29,7 @@ public class ContenuFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_home, container, false);
         recyclerView = rootView.findViewById(R.id.recyclerView);
-        recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
-
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         ArrayList<CardModel> cardList = new ArrayList<>();
         // Remplissez votre liste de cartes avec les données nécessaires
         cardList.add(new CardModel(R.drawable.baobabs, "Titre 1", ""));
@@ -37,8 +38,8 @@ public class ContenuFragment extends Fragment {
         cardList.add(new CardModel(R.drawable.baobabs, "Titre 4", ""));
         // Ajoutez plus d'éléments à la liste
 
-        cardAdapter = new CardAdapter(cardList);
-        recyclerView.setAdapter(cardAdapter);
+        contenuAdapter = new ContenuAdapter(cardList);
+        recyclerView.setAdapter(contenuAdapter);
 //        binding = FragmentHomeBinding.inflate(inflater, container, false);
 //        View root = binding.getRoot();
         return rootView;
