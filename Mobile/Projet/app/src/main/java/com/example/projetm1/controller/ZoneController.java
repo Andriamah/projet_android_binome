@@ -1,5 +1,7 @@
 package com.example.projetm1.controller;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 
 import com.example.projetm1.config.ApiConfig;
@@ -19,11 +21,11 @@ import okhttp3.Response;
 
 public class ZoneController {
     public void getListFavoriClient(final ZoneController.GetZoneCallBack callBack) {
-        String favoriUrl = ApiConfig.BASE_URL + "/zone/";
+        String favoriUrl = ApiConfig.BASE_URL + "zone/";
 
         // Créer une instance d'OkHttpClient pour effectuer la requête
         OkHttpClient client = OkHttpUtils.getUnsafeOkHttpClient();
-
+        Log.d("url",favoriUrl);
         // Construire la requête GET pour récupérer les détails du client
         Request request = new Request.Builder()
                 .url(favoriUrl)

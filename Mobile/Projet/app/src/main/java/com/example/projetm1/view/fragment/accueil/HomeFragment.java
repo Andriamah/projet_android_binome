@@ -31,6 +31,7 @@ import com.example.projetm1.view.fragment.contenu.ContenuFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
+import java.util.concurrent.CountDownLatch;
 
 
 public class HomeFragment extends Fragment {
@@ -52,22 +53,39 @@ public class HomeFragment extends Fragment {
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
         zoneController = new ZoneController();
         ArrayList<CardModel> cardList = new ArrayList<>();
+        final CountDownLatch latch = new CountDownLatch(1);
      zoneController.getListFavoriClient(new ZoneController.GetZoneCallBack(){
-
          @Override
          public void onGetZoneClientSuccess(ArrayList<Zone> favoris) {
-             Log.d("ieeeeeeeee","nonnnnnnnnnnnnnnnnnnnnnnnnnnnn");
              for (Zone z: favoris) {
-                 cardList.add(new CardModel(R.drawable.baobabs, z.getIntitule(), z.getDescription()));
+                 String test = z.getIntitule();
+                 int drawableResourceId = getResources().getIdentifier(test, "drawable",requireContext().getPackageName());
+                 Log.d("haha",""+drawableResourceId);
+                 if (drawableResourceId==0){
+                     cardList.add(new CardModel(R.drawable.baobabs, z.getIntitule(), z.getDescription()));
+                 }else{
+                     cardList.add(new CardModel(drawableResourceId, z.getIntitule(), z.getDescription()));
+                 }
+
+                 Log.d("ieeeeeeeee","yesssssssssss"+favoris.size());
              }
+             latch.countDown();
          }
          @Override
          public void onGetZoneClientFailure(String messageError) {
-                Log.d("aaa","nonnnnnnnnnnnnnnnnnnnnnnnnnnnn");
+                Log.d("aaa","nonnnnnnnnnnnnnnnnnnnnnnnnnnnn"+messageError);
+             latch.countDown();
          }
      });
+        try {
+            // Attendez ici que le compte à rebours atteigne zéro
+            latch.await();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
 
+        Log.d("ieeeeeeeee","faharoa");
         // Remplissez votre liste de cartes avec les données nécessaires
 //        cardList.add(new CardModel(R.drawable.baobabs, "Titre 1", ""));
 //        cardList.add(new CardModel(R.drawable.baobabs, "Titre 2", ""));
@@ -115,4 +133,5 @@ public class HomeFragment extends Fragment {
         super.onDestroyView();
         binding = null;
     }
+
 }

@@ -2,21 +2,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <item
-        android:id="@+id/newcontenu"
-        android:orderInCategory="100"
-        android:icon="@android:drawable/ic_notification_clear_all"
-        android:tint="@color/white"
-        app:showAsAction="ifRoom"
-        android:title="TODO" />
-
-    <item
-        android:id="@+id/notification"
-        android:orderInCategory="100"
-        android:icon="@android:drawable/ic_notification_clear_all"
-        android:tint="@color/white"
-        app:showAsAction="ifRoom"
-        android:title="TODO" />
 
     <item
         android:id="@+id/action_logout"

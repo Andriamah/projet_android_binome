@@ -1,7 +1,10 @@
 package com.example.projetm1.view.fragment.contenu;
 
 import android.annotation.SuppressLint;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,6 +30,7 @@ import com.example.projetm1.model.Historique_favori;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
+import java.util.concurrent.CountDownLatch;
 
 public class ContenuFragment extends Fragment {
     private RecyclerView recyclerView;
@@ -53,7 +57,8 @@ public class ContenuFragment extends Fragment {
             // Maintenant, vous avez la valeur contenuId
         }
         ArrayList<CardModel> cardList = new ArrayList<>();
-    contenuController = new ContenuController();
+        contenuController = new ContenuController();
+        final CountDownLatch latch = new CountDownLatch(1);
       contenuController.getListFavoriClient(contenuId, new ContenuController.GetContenuCallBack() {
           @Override
           public void onGetFavoriClientSuccess(ArrayList<Contenu> favoris) {
@@ -61,13 +66,24 @@ public class ContenuFragment extends Fragment {
               for (Contenu c: favoris
                    ) {
                   Log.d("tyy","niditra boucle");
-                  cardList.add(new CardModel(R.drawable.baobabs, c.getDate_contenu(), c.getCommentaire()));
+
+                  cardList.add(new CardModel(R.drawable.baobabs, c.getCommentaire(), c.getDate_contenu()));
               }
+              latch.countDown();
           }
           @Override
           public void onGetFavoriClientFailure(String messageError) {
+              latch.countDown();
           }
       });
+
+        try {
+            // Attendez ici que le compte à rebours atteigne zéro
+            latch.await();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         // Remplissez votre liste de cartes avec les données nécessaires
 //        cardList.add(new CardModel(R.drawable.baobabs, "Titre 1", ""));
 //        cardList.add(new CardModel(R.drawable.baobabs, "Titre 2", ""));

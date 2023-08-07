@@ -54,7 +54,7 @@ public class ContenuAdapter extends RecyclerView.Adapter<ContenuAdapter.CardView
             public void onClick(View v) {
                 Bundle args = new Bundle();
                 args.putInt("contenuId", card.getId());
-                Navigation.findNavController(v).navigate(R.id.ajout_contenu, args);
+//                Navigation.findNavController(v).navigate(R.id.ajout_contenu, args);
             }
         });
     }

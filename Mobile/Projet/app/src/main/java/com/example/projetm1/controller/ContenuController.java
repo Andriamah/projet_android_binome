@@ -30,7 +30,7 @@ public class ContenuController {
     public void addContenu(int id_client, int id_zone, String commentaire, String photo,
                            String video, String date_contenu, final AddContenuCallback callback) {
 
-        String addContenuUrl = ApiConfig.BASE_URL + "/contenu/";
+        String addContenuUrl = ApiConfig.BASE_URL + "contenu/";
         OkHttpClient client = OkHttpUtils.getUnsafeOkHttpClient();
 
         // Construire le corps de la requête POST avec les détails du contenu à ajouter
@@ -91,7 +91,7 @@ public class ContenuController {
     }
 
     public void getListFavoriClient(int id_client, final ContenuController.GetContenuCallBack callBack) {
-        String favoriUrl = ApiConfig.BASE_URL + "/contenu/zone/" + id_client;
+        String favoriUrl = ApiConfig.BASE_URL + "contenu/zone/" + id_client;
 
         Log.d("url",favoriUrl);
 

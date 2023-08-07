@@ -25,7 +25,7 @@ public class ClientController {
     // Méthode pour gérer l'authentification (connexion)
     public void login(String username, String password, final LoginCallback callback) {
 
-        String loginUrl = ApiConfig.BASE_URL + "/client/login";
+        String loginUrl = ApiConfig.BASE_URL + "client/login";
         OkHttpClient client = OkHttpUtils.getUnsafeOkHttpClient();
 
         // Construire le corps de la requête POST avec les informations d'identification
@@ -95,9 +95,9 @@ public class ClientController {
 //    Inscription des utilisateurs
     public void register(Client clientbody, final RegisterCallback callback) {
     Log.d("tatay",clientbody.getNom());
-    String registerUrl = ApiConfig.BASE_URL + "/client/register";
+    String registerUrl = ApiConfig.BASE_URL + "client/register";
     OkHttpClient client = OkHttpUtils.getUnsafeOkHttpClient();
-
+    Log.d("ilgwfhbojl",registerUrl);
     // Construire le corps de la requête POST avec les informations d'identification
     RequestBody formBody = new FormBody.Builder()
             .add("nom", clientbody.getNom())
@@ -157,7 +157,7 @@ public class ClientController {
     public void updateProfil(int id, String nom, String prenom, String pseudo, String mail, String mdp,String pdp,
                              final UpdateProfilCallback callback){
         String updateUrl = ApiConfig.BASE_URL + "/client/"+id;
-        OkHttpClient client = new OkHttpClient();
+        OkHttpClient client = OkHttpUtils.getUnsafeOkHttpClient();
 
         // Construire le corps de la requête PuT avec les informations d'identification
         RequestBody formBody = new FormBody.Builder()
@@ -224,7 +224,7 @@ public class ClientController {
         String apiUrl = ApiConfig.BASE_URL + "/client/" + clientId;
 
         // Créer une instance d'OkHttpClient pour effectuer la requête
-        OkHttpClient client = new OkHttpClient();
+        OkHttpClient client = OkHttpUtils.getUnsafeOkHttpClient();
 
         // Construire la requête GET pour récupérer les détails du client
         Request request = new Request.Builder()
