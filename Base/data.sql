@@ -6,3 +6,6 @@ INSERT INTO `contenu` (`id`, `id_client`, `id_zone`, `commentaire`, `photo`, `vi
 
 ALTER TABLE notification
 ADD COLUMN date_notif TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP;
+
+ALTER TABLE notification
+ADD COLUMN date_notif TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP;

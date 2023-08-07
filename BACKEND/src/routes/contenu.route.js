@@ -8,4 +8,6 @@ router.post('/', contenuController.create);
 
 router.get('/zone/:zoneId', contenuController.findByIdZone);
 
+router.get('/detail/:id', contenuController.findById);
+
 module.exports = router

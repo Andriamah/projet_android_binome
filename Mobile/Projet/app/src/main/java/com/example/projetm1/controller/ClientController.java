@@ -1,7 +1,5 @@
 package com.example.projetm1.controller;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.util.Log;
 
 import com.example.projetm1.config.ApiConfig;
@@ -154,14 +152,13 @@ public class ClientController {
     }
 
 //Modifier profil
-    public void updateProfil(String id, String nom, String prenom, String pseudo, String mail, String mdp, String pdp,
+    public void updateProfil(int id, String nom, String prenom, String pseudo, String mail, String mdp,String pdp,
                              final UpdateProfilCallback callback){
-        String updateUrl = ApiConfig.BASE_URL + "/clients/"+id;
+        String updateUrl = ApiConfig.BASE_URL + "/client/"+id;
         OkHttpClient client = new OkHttpClient();
 
         // Construire le corps de la requête PuT avec les informations d'identification
         RequestBody formBody = new FormBody.Builder()
-                .add("id", id)
                 .add("nom", nom)
                 .add("prenom", prenom)
                 .add("pseudo", pseudo)
@@ -192,15 +189,15 @@ public class ClientController {
                 Log.d("MyTag", jsonResponse);
                 try {
                     JSONObject jsonObject = new JSONObject(jsonResponse);
-                    boolean success = jsonObject.getBoolean("success");
-                    String message = jsonObject.getString("error");
+                    boolean error = jsonObject.getBoolean("error");
+                    String message = jsonObject.getString("message");
 
-                    // Traiter la réponse JSON en fonction du succès ou de l'échec de l'authentification
-                    if (success) {
-                        // L'authentification a réussi
+                    // Traiter la réponse JSON en fonction du succès ou de l'échec de la mise à jour
+                    if (!error) {
+                        // La mise à jour a réussi
                         callback.onUpdateProfilSuccess();
                     } else {
-                        // L'authentification a échoué
+                        // La mise à jour a échoué
                         callback.onUpdateProfilFailure(message);
                     }
                 } catch (JSONException e) {
@@ -208,6 +205,7 @@ public class ClientController {
                     callback.onUpdateProfilFailure("Erreur de traitement de la réponse du serveur");
                 }
             }
+
         });
     }
 
