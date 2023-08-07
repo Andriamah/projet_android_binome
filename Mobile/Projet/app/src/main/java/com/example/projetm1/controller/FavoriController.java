@@ -2,12 +2,18 @@ package com.example.projetm1.controller;
 
 import android.util.Log;
 
+import androidx.annotation.NonNull;
+
 import com.example.projetm1.config.ApiConfig;
+import com.example.projetm1.model.Historique_favori;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -113,7 +119,7 @@ public class FavoriController {
             }
         });
     }
-    public interface  GetFavoriClientCallBack{
+    public interface GetFavoriClientCallBack{
         void onGetFavoriClientSuccess(ArrayList<Historique_favori> favoris);
         void onGetFavoriClientFailure(String messageError);
     }
